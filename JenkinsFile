@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Compile') {
+            steps {
+                gradlew('clean')
+            }
+        }
+        stage('Build') {
+            steps {
+                gradlew('build')
+            }
+        }
+        stage('Initialise Server') {
+            steps {
+                gradlew('runServer')
+            }
+        }
+        stage('Run Client') {
+            steps {
+                gradlew('runClient')
+            }
+        }
+    }
+}
+
+def gradlew(String... args) {
+    sh "./gradlew ${args.join(' ')} -s"
+}
