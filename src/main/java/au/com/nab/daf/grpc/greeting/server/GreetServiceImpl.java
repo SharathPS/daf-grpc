@@ -10,6 +10,7 @@ public class GreetServiceImpl extends GreetServiceGrpc.GreetServiceImplBase {
 
     @Override
     public void greet(GreetRequest request, StreamObserver<GreetResponse> responseObserver) {
+        System.out.println("Request received from client: " + request.toString());
         // extract the fields we need
         Greeting greeting = request.getGreeting();
         String firstName = greeting.getFirstName();
